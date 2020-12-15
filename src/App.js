@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import { Header } from "./Components/Header";
 import './App.css';
+import { Balance } from "./Components/Balance";
+import { IncomeExpenses } from "./Components/IncomeExpenses";
+import Bulb from "./Components/Bulb.png";
+import { TransactionHistory } from "./Components/TransactionHistory";
+import { AddTransaction } from "./Components/AddTransaction";
+import { GlobalProvider } from "./Context/GlobalState";
 
 function App() {
+  let [islit,setlit]=useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <div className={`${islit?'':'dark'} body-width`}>
+        <div className="head">
+          <div className="header">
+            <Header />
+            <button className={`${islit?'lit':'dark'} btn-size`} onClick={()=>{setlit(!islit)}}><img className="size-img" src={Bulb} alt="Dark and Light Theme"/></button>
+          </div>
+        </div>
+        <div className="container">
+          <Balance /> 
+          <IncomeExpenses />
+          <TransactionHistory />
+          <AddTransaction />
+        </div> 
+      </div>
+    </GlobalProvider>
   );
 }
 
