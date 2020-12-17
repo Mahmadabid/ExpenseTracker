@@ -134,7 +134,6 @@ input[type='number'] {
   position: relative;
   padding: 10px;
   margin: 10px 0;
-  border-right: 5px solid #0e0d0d;
 }
 
 .list li.plus {
@@ -152,11 +151,6 @@ input[type='number'] {
 
 .list li.minus:hover {
   background-color: rgb(235, 32, 32);
-  color: white;
-}
-
-.list li:hover {
-  background-color:#524f4f;
   color: white;
 }
 

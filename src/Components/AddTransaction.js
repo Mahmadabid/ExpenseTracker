@@ -1,16 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '../Context/GlobalState';
 
 export const AddTransaction = () => {
 
+    const { addtransactions } = useContext(GlobalContext);
     const [text, settext] = useState('')
     const [amount, setamount] = useState(0)
     
-
-    const Addition = (event) =>{
-        event.preventDefault();
-
+    const newTransaction={
+        id:Math.floor(Math.random() * 100000000),
+        text,
+        amount : +amount
     }
-
+    
+      const Addition = (event) =>{
+        event.preventDefault();
+        
+        if (amount==='' || text==='' || amount==='0'){
+          alert('Please add a non-zero value and a text');
+          settext('');
+          setamount('');
+        }
+      
+        else {
+          addtransactions(newTransaction);
+          settext('');
+          setamount('');
+        }    
+    }
+    
     return (
         <div>
             <h3>Add Transaction</h3>
@@ -25,4 +43,5 @@ export const AddTransaction = () => {
             </form>
         </div>
     )
-}
+    }
+    
