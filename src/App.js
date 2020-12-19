@@ -1,32 +1,31 @@
 import { useState } from "react";
-import { Header } from "./Components/Header";
+import Header  from "./Components/Header";
 import './App.css';
 import { Balance } from "./Components/Balance";
 import { IncomeExpenses } from "./Components/IncomeExpenses";
-import Bulb from "./Components/Bulb.png";
+
 import { TransactionHistory } from "./Components/TransactionHistory";
 import { AddTransaction } from "./Components/AddTransaction";
-import { GlobalProvider } from "./Context/GlobalState";
+import { GlobalProvider, Globalbtn } from "./Context/GlobalState";
 
 function App() {
-  let [islit,setlit]=useState(true);
+
+  let islit=useState(true);
 
   return (
     <GlobalProvider>
-      <div className={`${islit?'':'dark'} body-width`}>
-        <div className="head">
-          <div className="header">
+      <Globalbtn.Provider value={islit}>
+      <div className={`${islit[0]?'lit':'dark'} body-width`}>
             <Header />
-            <button className={`${islit?'lit':'dark'} btn-size`} onClick={()=>{setlit(!islit)}}><img className="size-img" src={Bulb} alt="Dark and Light Theme"/></button>
-          </div>
-        </div>
+      
         <div className="container">
           <Balance /> 
           <IncomeExpenses />
           <TransactionHistory />
           <AddTransaction />
         </div> 
-      </div>
+        </div>
+        </Globalbtn.Provider> 
     </GlobalProvider>
   );
 }

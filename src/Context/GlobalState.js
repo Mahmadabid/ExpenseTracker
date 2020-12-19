@@ -36,3 +36,6 @@ export const GlobalProvider = ({ children }) => {
         </GlobalContext.Provider>
     )
 }
+
+
+export const Globalbtn = createContext(true);
