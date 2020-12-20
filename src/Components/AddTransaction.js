@@ -5,7 +5,7 @@ export const AddTransaction = () => {
 
     const { addtransactions } = useContext(GlobalContext);
     const [text, settext] = useState('')
-    const [amount, setamount] = useState(0)
+    const [amount, setamount] = useState('')
     
     const newTransaction={
         id:Math.floor(Math.random() * 100000000),
