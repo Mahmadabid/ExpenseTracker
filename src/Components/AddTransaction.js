@@ -16,12 +16,13 @@ export const AddTransaction = () => {
       const Addition = (event) =>{
         event.preventDefault();
         
+
         if (amount==='' || text==='' || amount==='0'){
           alert('Please add a non-zero value and a text');
           settext('');
           setamount('');
         }
-      
+
         else {
           addtransactions(newTransaction);
           settext('');
@@ -32,14 +33,26 @@ export const AddTransaction = () => {
     return (
         <div>
             <h3>Add Transaction</h3>
-            <form>
+            <form action="">
+           {/*<form> */} 
                 <label htmlFor="description">Text</label>
-                <input type="text" id="description" placeholder="Enter description..." value={text} onChange={(e)=>{settext(e.target.value)}}></input>
+                <input type="text" id="description" placeholder="Enter description..." value={text} onChange={(e)=>{settext(e.target.value)}} required/>
                 
                 <label htmlFor="amount">Amount <br/>
                 (negative - expense, positive - income)</label>
-                <input type="number" id="amount" placeholder="Enter Amount..." value={amount} onChange={(e)=>{setamount(e.target.value)}}></input>
-                <button className="btn" onClick={Addition}>Add Transaction</button>
+                <input type="number" id="amount" placeholder="Enter Amount..." value={amount} onChange={(e)=>{setamount(e.target.value)}} required/>
+                <div className="Inc-Exp">
+                  <div>
+                    <input type="radio" value={amount} id="income" name="balance" onClick={(e)=>{setamount(e.target.value)}} required/>
+                    <label htmlFor="income" className="inc-col">Income</label>
+                  </div>
+                  <div>
+                    <input type="radio" value={-amount} id="expense" name="balance" onClick={(e)=>{setamount(e.target.value)}} required/>
+                    <label htmlFor="expense" className="exp-col">Expense</label>
+                  </div>
+                </div>
+                {/*<button className="btn" onClick={Addition}>Add Transaction</button>*/}
+                <input className="btn" type="submit" value="Addtransaction" onClick={Addition}/>
             </form>
         </div>
     )

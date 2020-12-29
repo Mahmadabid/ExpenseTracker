@@ -217,3 +217,18 @@ width: 100vw;
   width: 30px;
   height:35px;
 }
+
+.Inc-Exp {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 60px;
+  margin-right: 60px; 
+}
+
+.inc-col {
+  color: rgb(6, 151, 6);
+}
+
+.exp-col {
+  color:rgb(185, 10, 10);
+}
