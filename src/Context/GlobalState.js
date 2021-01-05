@@ -8,6 +8,8 @@ const initialState = {
 
 export const GlobalContext = createContext(initialState);
 
+export const IncExp = createContext('income');
+
 export const GlobalProvider = ({ children }) => {
 
     const [state,dispatch] = useReducer(AppReducer, initialState)
@@ -19,10 +21,10 @@ export const GlobalProvider = ({ children }) => {
         });
       }
 
-    function addtransactions(transaction) {
+    function addtransactions(newtransaction) {
         dispatch({
           type: 'ADD_TRANSACTION',
-          payload: transaction
+          payload: newtransaction
         });
       }
 

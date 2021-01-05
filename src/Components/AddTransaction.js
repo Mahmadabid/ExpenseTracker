@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { GlobalContext } from '../Context/GlobalState';
+import { GlobalContext, IncExp } from '../Context/GlobalState';
 
 export const AddTransaction = () => {
-
+  
+    const [Incexp, setIncExp] = useContext(IncExp);
     const { addtransactions } = useContext(GlobalContext);
     const [text, settext] = useState('')
     const [amount, setamount] = useState('')
@@ -10,49 +11,37 @@ export const AddTransaction = () => {
     const newTransaction={
         id:Math.floor(Math.random() * 100000000),
         text,
-        amount : +amount
+        amount : Incexp==='income'?+amount:-amount
     }
     
-      const Addition = (event) =>{
+      function Addition (event) {
         event.preventDefault();
-        
-
-        if (amount==='' || text==='' || amount==='0'){
-          alert('Please add a non-zero value and a text');
-          settext('');
-          setamount('');
-        }
-
-        else {
           addtransactions(newTransaction);
           settext('');
           setamount('');
-        }    
+          
     }
     
     return (
         <div>
             <h3>Add Transaction</h3>
-            <form action="">
-           {/*<form> */} 
+            <form onSubmit={Addition}>
                 <label htmlFor="description">Text</label>
-                <input type="text" id="description" placeholder="Enter description..." value={text} onChange={(e)=>{settext(e.target.value)}} required/>
+                <input type="text" id="description" placeholder="Enter description..." required value={text} onChange={(e)=>{settext(e.target.value)}} />
                 
-                <label htmlFor="amount">Amount <br/>
-                (negative - expense, positive - income)</label>
+                <label htmlFor="amount">Amount</label>
                 <input type="number" id="amount" placeholder="Enter Amount..." value={amount} onChange={(e)=>{setamount(e.target.value)}} required/>
                 <div className="Inc-Exp">
                   <div>
-                    <input type="radio" value={amount} id="income" name="balance" onClick={(e)=>{setamount(e.target.value)}} required/>
+                    <input type="radio" id="income" name="balance" onClick={()=>{setIncExp('income')}} defaultChecked required/>
                     <label htmlFor="income" className="inc-col">Income</label>
                   </div>
                   <div>
-                    <input type="radio" value={-amount} id="expense" name="balance" onClick={(e)=>{setamount(e.target.value)}} required/>
+                    <input type="radio" id="expense" name="balance" onClick={()=>{setIncExp('expense')}} required/>
                     <label htmlFor="expense" className="exp-col">Expense</label>
                   </div>
                 </div>
-                {/*<button className="btn" onClick={Addition}>Add Transaction</button>*/}
-                <input className="btn" type="submit" value="Addtransaction" onClick={Addition}/>
+                <input className="btn" type="submit" value="Addtransaction"/>
             </form>
         </div>
     )
