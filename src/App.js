@@ -16,7 +16,7 @@ function App() {
     <GlobalProvider>
       <Globalbtn.Provider value={islit}>
         <IncExp.Provider value={incexp}>
-          <div className={`${islit[0]?'lit':'dark'} body-width`}>
+          <div className={`${islit[0]?'lit':'dark-mode'} body-width`}>
               <Header />  
           <div className="container">
             <Balance /> 

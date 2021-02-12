@@ -8,12 +8,25 @@
   box-sizing: border-box;
 }
 
+.App {
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.dark-mode {
+  background-color: hsl(226, 23%, 11%);
+  color: white;
+}
+
+.color {
+  background-color: hsl(227deg 22% 20%);
+}
+
 body {
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
